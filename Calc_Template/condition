@@ -1,0 +1,35 @@
+#!/bin/bash
+MP="calc_path_str"
+
+Aries_num=""
+Cores_num=""
+
+case '1' in
+'1'   ) Calc=('scf') ;; 
+'2'   ) Calc=('nscf' 'projwfc') ;; 
+'3'   ) Calc=('nscf' 'band') ;; 
+'4'   ) Calc=('nscf' 'nnkp' 'pw2wan' 'w90') ;;
+
+'s0'  ) Calc=('wt') ;;
+'s1'  ) Calc=('nscf') ;; 
+'s2'  ) Calc=('projwfc') ;; 
+'s3'  ) Calc=('band') ;; 
+'s4'  ) Calc=('w90') ;;
+'s5'  ) Calc=('pw90') ;;
+esac
+
+INPUT_PATH="$MP/input"
+RESULT_PATH="$MP/result"
+CALCSH_PATH="$MP/qe_calc/qe_calc.sh"
+
+Exe="exe.sh"
+Log="calc_log"
+
+QE_PATH="/home/terao/qe-6.7"
+Wannier="wannier90-3.1.0"
+WT_PATH="/home/terao/wannier_tools"
+qePREFIX="mpirun -n $Cores_num $QE_PATH/bin"
+w9PREFIX="mpirun -n $Cores_num $QE_PATH/$Wannier"
+wtPREFIX="mpirun -n $Cores_num $WT_PATH/bin"
+
+
