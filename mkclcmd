@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function newcalc(){
+DirPATH=$(cd $(dirname $BASH_SOURCE); pwd)
+flag=0
+
+case $# in
+'1'   ) $DirPATH/NewCalc.sh $@ ;;
+*           ) echo "mkclcmd: argument false"; flag=1 ;;
+esac
+#if [ $flag -eq 1 ]; then exit 1; fi
+}
+
+
+
+
+
