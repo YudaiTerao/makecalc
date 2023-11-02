@@ -3,7 +3,7 @@
 CP=$(cd $(dirname $0); pwd)
 CONDITION_PATH="$CP/../cifcalc_condition"
 if [ ! -e $CONDITION_PATH ]; then 
-echo "cifcalc_save.sh:condition not found"; exit 1; fi
+echo "NewCalc.sh: condition not found"; exit 1; fi
 source $CONDITION_PATH
 
 flag=0
@@ -25,6 +25,7 @@ mkdir $NP
 cp -r $TP/condition $TP/exe.sh $TP/qe_calc $NP/ 
 mkdir $NP/result $NP/input
 
+#$NPのPATHの/を\/に変換
 np=${NP//\//\\\/}
 tp="calc_path_str"
 cat $NP/condition | sed -e "s/$tp/$np/g" > $NP/tmp 

@@ -2,13 +2,14 @@
 MP="calc_path_str"
 
 Aries_num=""
-Cores_num=""
+Cores_num="22"
 
 case '1' in
 '1'   ) Calc=('scf') ;; 
 '2'   ) Calc=('nscf' 'projwfc') ;; 
 '3'   ) Calc=('nscf' 'band') ;; 
 '4'   ) Calc=('nscf' 'nnkp' 'pw2wan' 'w90') ;;
+'5'   ) Calc=('nscf' 'nnkp' 'pw2wan' 'cp0' 'w90' 'cp1' 'pw90') ;;
 
 's0'  ) Calc=('wt') ;;
 's1'  ) Calc=('nscf') ;; 
@@ -16,7 +17,24 @@ case '1' in
 's3'  ) Calc=('band') ;; 
 's4'  ) Calc=('w90') ;;
 's5'  ) Calc=('pw90') ;;
+'bp'  ) mesh=0
+        for m in `seq 0 mesh`; do
+            n=m*3
+            dir="../Replot_band/bp"$i
+            Calc+=('cp'$n) 'w90')
+            srfile+=($dir'/bp'$m'_win')
+            cpfile+=('CrFeS2_S.win')
+
+            Calc+=('cp'$((n+1)) 'cp'$((n+2)))
+            srfile+=('CrFeS2_S_band.dat' 'CrFeS2_S_band.labelinfo.dat')
+            cpfile+=($dir'/bp'$m'_band.dat' $dir'/bp'$m'_band.labelinfo.dat')
+        done ;;
 esac
+
+
+#N="CrFeS2_S"
+#srfile=($N'_w90_win' $N'_AHC_win')
+#cpfile=($N'.win' $N'.win')
 
 INPUT_PATH="$MP/input"
 RESULT_PATH="$MP/result"

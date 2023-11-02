@@ -28,6 +28,11 @@ case $CM in
     'w90'     ) $w9PREFIX/wannier90.x $MN ;;
     'pw90'    ) $w9PREFIX/postw90.x $MN ;;
     'wt'      ) $wtPREFIX/wt.x ;;
+    'cp'[0-9] | 'cp'[1-9][0-9] | 'cp'[1-9][0-9][0-9] | 'cp'[1-9][0-9][0-9][0-9])
+                Ncp=${CM##cp}
+                if [ -n "${srfile[$Ncp]}" ] && [ -n "${cpfile[$Ncp]}" ]; then
+                    cp $RESULT_PATH/${srfile[$Ncp]} $RESULT_PATH/${cpfile[$Ncp]}
+                fi ;;
     *    )  exit ;;
 esac
     done
