@@ -1,7 +1,7 @@
 #!/bin/bash
 MP="calc_path_str"
 
-Aries_num=""
+Aries_num="01"
 Cores_num="22"
 
 case '1' in
@@ -17,28 +17,28 @@ case '1' in
 's3'  ) Calc=('band') ;; 
 's4'  ) Calc=('w90') ;;
 's5'  ) Calc=('pw90') ;;
-'bp'  ) mesh=0
-        for m in `seq 0 mesh`; do
-            n=m*3
-            dir="../Replot_band/bp"$i
-            Calc+=('cp'$n) 'w90')
-            srfile+=($dir'/bp'$m'_win')
-            cpfile+=('CrFeS2_S.win')
-
-            Calc+=('cp'$((n+1)) 'cp'$((n+2)))
-            srfile+=('CrFeS2_S_band.dat' 'CrFeS2_S_band.labelinfo.dat')
-            cpfile+=($dir'/bp'$m'_band.dat' $dir'/bp'$m'_band.labelinfo.dat')
-        done ;;
 esac
-
 
 #N="CrFeS2_S"
 #srfile=($N'_w90_win' $N'_AHC_win')
 #cpfile=($N'.win' $N'.win')
 
+#relax=true
+relax=false
+if [ "$relax" ]; then
+    lc1=1
+    step1=0.05
+    iter1=(10 10)
+    lc2=false
+#    lc2=
+#    step2=0.02
+#    iter2=(20 20)
+fi
+
 INPUT_PATH="$MP/input"
 RESULT_PATH="$MP/result"
 CALCSH_PATH="$MP/qe_calc/qe_calc.sh"
+RELAXSH_PATH="$MP/qe_calc/relax.sh"
 
 Exe="exe.sh"
 Log="calc_log"
@@ -51,3 +51,15 @@ w9PREFIX="mpirun -n $Cores_num $QE_PATH/$Wannier"
 wtPREFIX="mpirun -n $Cores_num $WT_PATH/bin"
 
 
+#'bp'  ) mesh=0
+#        for m in `seq 0 mesh`; do
+#            n=m*3
+#            dir="../Replot_band/bp"$i
+#            Calc+=('cp'$n 'w90')
+#            srfile+=($dir'/bp'$m'_win')
+#            cpfile+=('CrFeS2_S.win')
+#
+#            Calc+=('cp'$((n+1)) 'cp'$((n+2)))
+#            srfile+=('CrFeS2_S_band.dat' 'CrFeS2_S_band.labelinfo.dat')
+#            cpfile+=($dir'/bp'$m'_band.dat' $dir'/bp'$m'_band.labelinfo.dat')
+#        done ;;

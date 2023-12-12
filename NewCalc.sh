@@ -28,10 +28,10 @@ mkdir $NP/result $NP/input
 #$NPのPATHの/を\/に変換
 np=${NP//\//\\\/}
 tp="calc_path_str"
-cat $NP/condition | sed -e "s/$tp/$np/g" > $NP/tmp 
+cat $NP/condition | sed -e "s/$tp/$np/g" > $NP/tmp
 mv $NP/tmp $NP/condition
 
 chmod u+x $NP/condition
 chmod u+x $NP/exe.sh
-chmod u+x $NP/qe_calc/qe_calc.sh
+chmod u+x $NP/qe_calc/*
 

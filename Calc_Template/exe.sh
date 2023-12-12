@@ -5,5 +5,8 @@ if [ ! -e $CONDITION_PATH ]; then
 echo "exe.sh:condition not found"; exit; fi
 source $CP
 
-bsub -e $RESULT_PATH/err.dat -n $Cores_num -m "aries$Aries_num" $CALCSH_PATH
+if $relax ; then
+    bsub -e $RESULT_PATH/err.dat -n $Cores_num -m "aries$Aries_num" $RELAXSH_PATH
+else 
+    bsub -e $RESULT_PATH/err.dat -n $Cores_num -m "aries$Aries_num" $CALCSH_PATH
 
